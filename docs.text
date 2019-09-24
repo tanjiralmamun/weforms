@@ -1,0 +1,24 @@
+FORMAT: 1A
+HOST: https://example.com/wp-json/erp/v1/accounting
+
+# ERP Accounting REST API
+
+
+<!-- include(includes/customers.apib) -->
+<!-- include(includes/vendors.apib) -->
+<!-- include(includes/employees.apib) -->
+<!-- include(includes/chart_of_accounts.apib) -->
+<!-- include(includes/taxes.apib) -->
+<!-- include(includes/products.apib) -->
+<!-- include(includes/product_cats.apib) -->
+<!-- include(includes/sales.apib) -->
+<!-- include(includes/invoices.apib) -->
+<!-- include(includes/payments.apib) -->
+<!-- include(includes/expenses.apib) -->
+<!-- include(includes/purchases.apib) -->
+<!-- include(includes/pay_purchases.apib) -->
+<!-- include(includes/bills.apib) -->
+<!-- include(includes/pay_bills.apib) -->
+<!-- include(includes/bank.apib) -->
+<!-- include(includes/journals.apib) -->
+<!-- include(includes/reports.apib) -->

@@ -1,0 +1,180 @@
+# Group Forms Settings
+
+
+## Forms Settings List [/forms/{form_id}/settings]
+
++ Parameters
+    + form_id (number, required) - id of Form
+
+### Internat Forms Settings [GET]
+Forms settings API lets you check the internal settings of your Forms like Forms settings, Subscription or Quiz settings etc. And for your kind information, this is not the global settings of weForms.
+
+Fetches settings
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                    "redirect_to": "same",
+                    "message": "Thanks for contacting us! We will get in touch with you shortly.",
+                    "page_id": "",
+                    "url": "",
+                    "submit_text": "Submit Query",
+                    "submit_button_cond": {
+                        "condition_status": "no",
+                        "cond_logic": "any",
+                        "conditions": [
+                            {
+                                "name": "",
+                                "operator": "=",
+                                "option": ""
+                            }
+                        ]
+                    },
+                    "schedule_form": "false",
+                    "schedule_start": "",
+                    "schedule_end": "",
+                    "sc_pending_message": "Form submission hasn't been started yet",
+                    "sc_expired_message": "Form submission is now closed.",
+                    "require_login": "false",
+                    "req_login_message": "You need to login to submit a query.",
+                    "limit_entries": "false",
+                    "limit_number": "100",
+                    "limit_message": "Sorry, we have reached the maximum number of submissions.",
+                    "label_position": "above",
+                    "use_theme_css": "wpuf-style",
+                    "quiz_form": "no",
+                    "shuffle_question_order": "no",
+                    "release_grade": "after_submission",
+                    "respondent_can_see": [
+                        "missed_questions",
+                        "correct_answers",
+                        "point_values"
+                    ],
+                    "total_points": 0,
+                    "enable_multistep": false,
+                    "multistep_progressbar_type": "progressive",
+                    "payment_paypal_images": "https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg",
+                    "payment_paypal_label": "PayPal",
+                    "payment_stripe_label": "Credit Card",
+                    "payment_stripe_images": [
+                        "visa",
+                        "mastercard",
+                        "amex",
+                        "discover"
+                    ],
+                    "payment_stripe_deactivate": "",
+                    "stripe_mode": "live",
+                    "stripe_page_id": "",
+                    "stripe_override_keys": "",
+                    "stripe_email": "",
+                    "stripe_key": "",
+                    "stripe_secret_key": "",
+                    "stripe_key_test": "",
+                    "stripe_secret_key_test": "",
+                    "stripe_prefill_email": "",
+                    "stripe_user_email_field": "",
+                    "payment_paypal_deactivate": "",
+                    "paypal_mode": "live",
+                    "paypal_type": "_cart",
+                    "paypal_override": "",
+                    "paypal_email": "",
+                    "paypal_page_id": "",
+                    "paypal_prefill_email": "",
+                    "paypal_user_email_field": ""
+            }
+
+
+### Edit & Update Forms Settings [PUT]
+With this API endpoint, you will be able to make changes within your setting field. Like- you can enable or disable page redirect or display orders, add text in message field and other related customization actions.
+
++ settings (object, required) -
+
++ Request (application/json)
+    + Body 
+            
+            {
+                "name": "Contact Form",
+                "settings":{  
+                    "submit_text": "Submit Query",
+                    "message": "Thanks for contacting us! We will get in touch with you shortly.",
+                    "schedule_form": "false"
+                }
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1462,
+                "settings": {
+                    "redirect_to": "same",
+                    "message": "Thanks for contacting us! We will get in touch with you shortly.",
+                    "page_id": "",
+                    "url": "",
+                    "submit_text": "Submit Query",
+                    "submit_button_cond": {
+                        "condition_status": "no",
+                        "cond_logic": "any",
+                        "conditions": [
+                            {
+                                "name": "",
+                                "operator": "=",
+                                "option": ""
+                            }
+                        ]
+                    },
+                    "schedule_form": "false",
+                    "schedule_start": "",
+                    "schedule_end": "",
+                    "sc_pending_message": "Form submission hasn't been started yet",
+                    "sc_expired_message": "Form submission is now closed.",
+                    "require_login": "false",
+                    "req_login_message": "You need to login to submit a query.",
+                    "limit_entries": "false",
+                    "limit_number": "100",
+                    "limit_message": "Sorry, we have reached the maximum number of submissions.",
+                    "label_position": "above",
+                    "use_theme_css": "wpuf-style",
+                    "quiz_form": "no",
+                    "shuffle_question_order": "no",
+                    "release_grade": "after_submission",
+                    "respondent_can_see": [
+                        "missed_questions",
+                        "correct_answers",
+                        "point_values"
+                    ],
+                    "total_points": 0,
+                    "enable_multistep": false,
+                    "multistep_progressbar_type": "progressive",
+                    "payment_paypal_images": "https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg",
+                    "payment_paypal_label": "PayPal",
+                    "payment_stripe_label": "Credit Card",
+                    "payment_stripe_images": [
+                        "visa",
+                        "mastercard",
+                        "amex",
+                        "discover"
+                    ],
+                    "payment_stripe_deactivate": "",
+                    "stripe_mode": "live",
+                    "stripe_page_id": "",
+                    "stripe_override_keys": "",
+                    "stripe_email": "",
+                    "stripe_key": "",
+                    "stripe_secret_key": "",
+                    "stripe_key_test": "",
+                    "stripe_secret_key_test": "",
+                    "stripe_prefill_email": "",
+                    "stripe_user_email_field": "",
+                    "payment_paypal_deactivate": "",
+                    "paypal_mode": "live",
+                    "paypal_type": "_cart",
+                    "paypal_override": "",
+                    "paypal_email": "",
+                    "paypal_page_id": "",
+                    "paypal_prefill_email": "",
+                    "paypal_user_email_field": ""
+                }
+            }
+

@@ -1,0 +1,96 @@
+# Group Transaction
+
+
+## Transaction List [/transaction/{?form_id,posts_per_page,page}]
+
++ Parameters
+    + form_id (number, required) - id of entry
+
+### Transaction Entry List [GET]
+
+Using this API endpoint, you can check all your transaction entries.
+
++ Parameters
+    + posts_per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 1328,
+                "columns": {
+                    "total": "Amount",
+                    "transaction_id": "Transaction ID",
+                    "created_at": "Created"
+                },
+                "form_entries": [
+                    {
+                        "id": "241",
+                        "form_id": "1328",
+                        "entry_id": "241",
+                        "user_id": "1",
+                        "total": "10",
+                        "gateway": "stripe",
+                        "transaction_id": "ch_1FCfBrJcjZJ0TOmbJHLSTsy2",
+                        "status": "completed",
+                        "payment_data": "a:25:{s:8:\"livemode\";b:0;s:6:\"amount\";i:1000;s:8:\"currency\";s:3:\"usd\";s:4:\"paid\";b:1;s:6:\"status\";s:9:\"succeeded\";s:13:\"receipt_email\";N;s:14:\"receipt_number\";N;s:8:\"refunded\";b:0;s:15:\"amount_refunded\";i:0;s:15:\"application_fee\";N;s:19:\"balance_transaction\";s:28:\"txn_1FCfBrJcjZJ0TOmbzbZkrmzV\";s:8:\"captured\";b:1;s:7:\"created\";i:1567052695;s:8:\"customer\";N;s:11:\"description\";N;s:11:\"destination\";N;s:7:\"dispute\";N;s:12:\"failure_code\";N;s:15:\"failure_message\";N;s:13:\"fraud_details\";a:0:{}s:7:\"invoice\";N;s:5:\"order\";N;s:8:\"shipping\";N;s:15:\"source_transfer\";N;s:20:\"statement_descriptor\";N;}",
+                        "created_at": "2019-08-29 04:24:56",
+                        "fields": {
+                            "total": "&#36;10.00",
+                            "transaction_id": "<a href='https://dashboard.stripe.com/payments/ch_1FCfBrJcjZJ0TOmbJHLSTsy2' target='_blank'>ch_1FCfBrJcjZJ0TOmbJHLSTsy2</a>",
+                            "created_at": "2019-08-29 04:24:56"
+                        }
+                    },
+                    {
+                        "id": "240",
+                        "form_id": "1328",
+                        "entry_id": "240",
+                        "user_id": "1",
+                        "total": "10",
+                        "gateway": "stripe",
+                        "transaction_id": "ch_1FCfAcJcjZJ0TOmbkq6IJjFj",
+                        "status": "completed",
+                        "payment_data": "a:25:{s:8:\"livemode\";b:0;s:6:\"amount\";i:1000;s:8:\"currency\";s:3:\"usd\";s:4:\"paid\";b:1;s:6:\"status\";s:9:\"succeeded\";s:13:\"receipt_email\";N;s:14:\"receipt_number\";N;s:8:\"refunded\";b:0;s:15:\"amount_refunded\";i:0;s:15:\"application_fee\";N;s:19:\"balance_transaction\";s:28:\"txn_1FCfAcJcjZJ0TOmbTEbzrUrz\";s:8:\"captured\";b:1;s:7:\"created\";i:1567052618;s:8:\"customer\";N;s:11:\"description\";N;s:11:\"destination\";N;s:7:\"dispute\";N;s:12:\"failure_code\";N;s:15:\"failure_message\";N;s:13:\"fraud_details\";a:0:{}s:7:\"invoice\";N;s:5:\"order\";N;s:8:\"shipping\";N;s:15:\"source_transfer\";N;s:20:\"statement_descriptor\";N;}",
+                        "created_at": "2019-08-29 04:23:39",
+                        "fields": {
+                            "total": "&#36;10.00",
+                            "transaction_id": "<a href='https://dashboard.stripe.com/payments/ch_1FCfAcJcjZJ0TOmbkq6IJjFj' target='_blank'>ch_1FCfAcJcjZJ0TOmbkq6IJjFj</a>",
+                            "created_at": "2019-08-29 04:23:39"
+                        }
+                    }
+                ],
+                "form_title": "transaction form",
+                "pagination": {
+                    "total": 2,
+                    "per_page": 20,
+                    "pages": 1,
+                    "current": 1
+                },
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/transaction/1328"
+                    },
+                    "collection": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/transaction"
+                    }
+                }
+            }
+## Bulk Delete Transaction [/transaction/{?entry_id}]
+
+### Delete A Transaction [DELETE]
+This piece of API enables you delete your transaction entries both in a bulk amount or separately.
+
++ Parameters
+    + entry_id (array,required) -
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "message": {
+                    "241": "Transaction Deleted successfully "
+                }
+            }

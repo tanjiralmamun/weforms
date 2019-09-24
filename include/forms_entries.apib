@@ -1,0 +1,181 @@
+# Group Forms Entries
+
+
+## Forms Entries List [/forms/{form_id}/entries/{?per_page,page}]
++ Parameters
+    + form_id (number,required) - id of the Form
+
+### Form Entry List [GET]
+
+Form Entry API helps you view and check all the deta provided by your audience in a single place with their classes or categories
+
++ Parameters
+
+    + per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                {
+                    "id": "154",
+                    "form_id": "1106",
+                    "user_id": "1",
+                    "ip_address": "0.0.0.0",
+                    "created_at": "2019-07-18 10:39:16",
+                    "fields": {
+                        "_pdf": "<a  target=\"_blank\" href=\"http://localhost:8888/wp-testing/wp-admin/admin-post.php?action=weforms_pdf_download&entry_id=154\">Download</a>"
+                    },
+                    "links": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/1106/entries/154"
+                },
+
+                {
+                    "id": "153",
+                    "form_id": "1106",
+                    "user_id": "1",
+                    "ip_address": "0.0.0.0",
+                    "created_at": "2019-07-18 10:38:20",
+                    "fields": {
+                        "_pdf": "<a  target=\"_blank\" href=\"http://localhost:8888/wp-testing/wp-admin/admin-post.php?action=weforms_pdf_download&entry_id=153\">Download</a>"
+                    },
+                    "links": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/1106/entries/153"
+                }
+            }
+
+## Forms Entries List [/forms/{form_id}/entries/]
+
+### Create A Form Entry [POST]
+Using this API, you will be able to create or add a new entry to your Form.
+
++ Parameters
+    + form_id (number,required) - id of the Form
+
++ Request 200 (application/json)
+    + Body
+
+            {
+
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+
+            }
+
+
+## Manage Single Forms Entries [/forms/{form_id}/entries/{entry_id}]
+
++ Parameters
+    + form_id (number,required) - id of the Form
+    + entry_id (number,required) - entry id  of the Form entries
+
+### Retrieve A Form Entry [GET]
+This API enables you to retrieve entries from your previously created Forms
+
++ Response 200 (application/json)
+    + Body
+
+            { 
+                "fields": {
+                    "single_product": {
+                        "name": "single_product",
+                        "label": "Single Product",
+                        "value": "Product: Single Product<br> Quantity: 1<br> Price: 10"
+                    },
+                    "payment_method": {
+                        "name": "payment_method",
+                        "label": "Payment Method",
+                        "value": "stripe"
+                    }
+                },
+                "meta_data": {
+                    "id": 154,
+                    "form_id": 1106,
+                    "form_title": "Blank Form",
+                    "user": "admin",
+                    "ip_address": "0.0.0.0",
+                    "device": "Google Chrome/MAC OS",
+                    "referer": "http://localhost:8888/wp-testing/?weforms_preview=1&form_id=1106",
+                    "created": "July 18, 2019 10:39 am"
+                },
+                "payment_data": null,
+                "has_empty": false,
+                "respondent_points": 0,
+                "answers": []
+            }
+
+## Delete A Forms Entries [/entries/{entry_id}/{?force}]
+
+### Delete A Form Entry [DELETE]
+With this API, you will be able to delete any entry submitted by the audience
+
++ Parameters
+    + force (boolean,optional)
+    + entry_id (number,required) - entry id  of the Form entries
+
++ Request (application/json)
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 154,
+                "message": "Entry Deleted successfully",
+                "data": {
+                    "status": 200
+                }
+            }
+
+## Bulk delete  Entries [/entries/{?entry_id}]
+
+### Delete Entries as a Group [POST]
+With this endpoint, you can delete bulk amount of entries from your Forms through a few clicks just like the way you follow in WordPress.
++ Parameters
+    + entry_id (array, required) - 
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "message": {
+                    "242": "Entry Deleted successfully "
+                }
+            }
+
+## Bulk Restore  Entries [/entries/restore/{?entry_id}]
+
+### Restore Entries in a Bulk Amount [GET]
+Restore Entries API helps you restore bulk amount of deleted entries from the trash folder.
++ Parameters
+    + entry_id (object, required) - 
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "message": {
+                    "242": "Entry Restore successfully "
+                }
+            }
+
+## Restore Forms Entries [/entries/{entry_id}/restore]
+
+### Restore Form Entries [GET]
+This API lets you restore single entry from your trash folder.
++ Parameters
+    + entry_id (number,required) - entry id  of the Form entries
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 153,
+                "message": "Entry Restore Successfully  successfully ",
+                "data": {
+                    "status": 200
+                }
+            }

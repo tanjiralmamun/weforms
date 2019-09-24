@@ -1,0 +1,236 @@
+
+# Group Modules
+
+## Modules [/modules/]
+
+### Module List [GET]
+Using this API endpoint, you can get an overview of all the modules integrated with weForms Pro
+
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "all": {
+                        "campaign-monitor/campaign-monitor.php": {
+                            "name": "Campaign Monitor",
+                            "description": "Add your customers to Campaign Monitor list when they submit a form",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/campaign-monitor.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "google-analytics/weforms-google-analytics.php": {
+                            "name": "Google Analytics Integration",
+                            "description": "Show your customers to Google Analytics when they submit a form",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/google-analytics.svg",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "sms-notification/weforms-sms.php": {
+                            "name": "SMS Notification",
+                            "description": "Send SMS notification on form submission",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/sms.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "getresponse/getresponse.php": {
+                            "name": "GetResponse Integration",
+                            "description": "Subscribe a contact to GetResponse when a form is submited",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/getresponse.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "zapier/zapier.php": {
+                            "name": "Zapier Integration",
+                            "description": "Subscribe a contact to Zapier when a form is submited",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/zapier-logomark.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "payment/payment.php": {
+                            "name": "Payment",
+                            "description": "Receive payments with weFroms",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/payment.svg",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "zoho/zoho.php": {
+                            "name": "Zoho",
+                            "description": "Add your customers to zoho list when they submit a form",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/zoho.svg",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "convertkit/convertkit.php": {
+                            "name": "ConvertKit Integration",
+                            "description": "Subscribe a contact to ConvertKit when a form is submited",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/convertkit.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "pdf/weforms-pdf.php": {
+                            "name": "PDF Form Submission",
+                            "description": "Download PDF of Form submissions",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/pdf.svg",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "quiz/weforms-quiz.php": {
+                            "name": "Quiz",
+                            "description": "You can create, send, and grade quizzes with weForms",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/quiz.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "mailchimp/weforms-mailchimp.php": {
+                            "name": "MailChimp Integration",
+                            "description": "Subscribe a contact to MailChimp when a form is submited",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/mailchimp.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "hubspot/hubspot.php": {
+                            "name": "HubSpot Integration",
+                            "description": "Subscribe a contact to HubSpot when a form is submited",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/hubspot.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "calculation/weforms-calculation.php": {
+                            "name": "Calculation",
+                            "description": "Add calculation capability to numeric fields",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/calculation.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "google-sheets/weforms-google-sheets.php": {
+                            "name": "Google Sheets Integration",
+                            "description": "Add your customers to Google sheets when they submit a form",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/google-sheets.jpg",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "salesforce/weforms-salesforce.php": {
+                            "name": "Salesforce Integration",
+                            "description": "Subscribe a contact to Salesforce when a form is submited",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/salesforce.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "trello/weforms-trello.php": {
+                            "name": "Trello Integration",
+                            "description": "Send data to Trello Board upon form submission",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/trello.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "constant-contact/constant-contact.php": {
+                            "name": "Constant Contact",
+                            "description": "Add your customers to Constant Contact list when they submit a form",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/constant-contact.jpg",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        },
+                        "aweber/aweber.php": {
+                            "name": "Aweber Integration",
+                            "description": "Subscribe a contact to Aweber when a form is submited",
+                            "plugin_uri": "https://wedevs.com/weforms/",
+                            "thumbnail": "http://localhost:8888/wp-testing/wp-content/plugins/weforms-pro/assets/images/aweber.png",
+                            "class": "",
+                            "author": "weDevs",
+                            "author_uri": "https://wedevs.com",
+                            "version": "1.0"
+                        }
+                },
+                "active": [
+                    "aweber/aweber.php",
+                    "calculation/weforms-calculation.php",
+                    "campaign-monitor/campaign-monitor.php",
+                    "constant-contact/constant-contact.php",
+                    "convertkit/convertkit.php",
+                    "getresponse/getresponse.php",
+                    "google-analytics/weforms-google-analytics.php",
+                    "google-sheets/weforms-google-sheets.php",
+                    "hubspot/hubspot.php",
+                    "mailchimp/weforms-mailchimp.php",
+                    "payment/payment.php",
+                    "pdf/weforms-pdf.php",
+                    "quiz/weforms-quiz.php",
+                    "salesforce/weforms-salesforce.php",
+                    "sms-notification/weforms-sms.php",
+                    "trello/weforms-trello.php",
+                    "zapier/zapier.php",
+                    "zoho/zoho.php"
+                ]
+            }
+
+### Activate/Deactivate A Module [POST]
+This API helps you activate or deactivate any of the modules
+Activate or Deactive Modules
+
++ Request
+    + Body
+    
+            {
+                "module": "getresponse/getresponse.php",
+                "type": "activate"
+            }
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "message": "getresponse/getresponse.php Activated",
+                "code": ""
+            }

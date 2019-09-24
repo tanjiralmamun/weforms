@@ -1,0 +1,193 @@
+# Group Settings
+
+## Settings List [/settings]
+
+### Settings List [GET]
+Using Settings list API, you can check weForms' global settings including general and other customization options.
+
+Fetches settings
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "zoho_login": "user_login2",
+                "zoho_password": "123456",
+                "zoho_token": true,
+                "sms_selected_gateway": "",
+                "sms_clickatell_username": "",
+                "sms_clickatell_password": "",
+                "sms_clickatell_api_id": "",
+                "sms_twilio_number_from": "",
+                "sms_twilio_account_sid": "",
+                "sms_twilio_auth_token": "",
+                "sms_smsglobal_username": "",
+                "sms_smsglobal_password": "",
+                "sms_smsglobal_from": "",
+                "sms_nexmo_apikey": "",
+                "sms_nexmo_apisecret": "",
+                "sms_nexmo_sender_id": "",
+                "sms_hoiio_app_id": "",
+                "sms_hoiio_access_token": "",
+                "sms_intellisms_username": "",
+                "sms_intellisms_password": "",
+                "sms_intellisms_sender": "",
+                "sms_infobip_username": "",
+                "sms_infobip_password": "",
+                "sms_infobip_sender": "",
+                "currency": "USD",
+                "currency_position": "left",
+                "price_thousand_sep": ",",
+                "price_decimal_sep": ".",
+                "price_num_decimals": "2",
+                "payment_redirect_to": "",
+                "payment_default_fields": true,
+                "paypal_email": "pay-facilitator_api1.mahbub.me",
+                "paypal_logo": "",
+                "paypal_ask_shipping": 0,
+                "paypal_message": "You are being redirected to a PayPal page for the payment.",
+                "stripe_key": "",
+                "stripe_secret_key": "",
+                "stripe_key_test": "pk_test_TgoXwICWUw5nLdozHcUFAlCB",
+                "stripe_secret_key_test": "sk_test_7XCgBLbi6mDndxZW0umwk5Bk",
+                "stripe_company_name": "we",
+                "stripe_company_desc": "Just another WordPress site",
+                "stripe_ask_billing": "",
+                "stripe_ask_shipping": "",
+                "stripe_logo": "",
+                "stripe_message": "Please wait while the payment popup is loading.",
+                "email_gateway": "wordpress",
+                "credit": false,
+                "recaptcha": {
+                    "key": "",
+                    "secret": ""
+                },
+                "mailchimp_api_key": "510f1e370ea44c1608d40dd50142e4c7-us20",
+                "campaign_monitor_key": "",
+                "constant_contact_key": "",
+                "pdf_header_type": "title",
+                "pdf_custom_html": "",
+                "pdf_logo": "",
+                "pdf_show_form_name": true,
+                "pdf_show": true,
+                "aweber_status": false,
+                "salesforce_status": true,
+                "permission": "publish_posts",
+                "gateways": {
+                    "sendgrid": "",
+                    "mailgun": "",
+                    "sparkpost": ""
+                },
+                "google_analytics_ua_tracking_id": "rrcucse.11@gmail.com",
+                "trello_token": "ab77bbd2092d75f2d8994fbdf6c3ae7b77197be4a1bd4f717c9efcc533f9abdd",
+                "trello_user_id": "566e8512e0022e385391fa7e",
+                "trello_username": "rokib2",
+                "trello_fullName": "rokib",
+                "trello_gravatarHash": "41192594a3bd644bf17130a05a78a8f1",
+                "hubspot_api_key": "bc90b147-ee8f-4b61-ae73-9b2c88e6001d",
+                "google_sheets_auth": true,
+                "getresponse_api_key": "484de59b0f01f28090f8ef62a8ff2b26",
+                "convertkit_api_key": "FdISG1RpAb_x2JWIUxA4jQ",
+                "convertkit_api_secret": "jcmiioUblW7hqeEhjZnBCXNDnR7_F7zOZH4JQRSq7M4",
+                "campaign_monitor_api_key": "VYD+6JC3lI2Vs/bk5V5v2pEWvG7tTv077Ag67Gql+bo/jZvWzKX92R9m2+JeCOQOIYF0n8baPxraxXu1Ip23SQ2KgN+bHOlzhoH5pGs2Vvdit5oWdLTECBQ3uUiMuC/hrHOCe6S4plYd9NwjUHjwBw==",
+                "constant_contact_api_key": "jdf9wd2kcjm3cpab7z8hqxkz",
+                "constant_contact_access_token": "HTKQQcfGZgcm6KBXharCJXUm"
+            }
+
+
+### Update Settings [PUT]
+This API enables you activate and cutomize your forms' global setttings to ensure perfect user experience.
+
++ Request (application/json)
+    + Body 
+    
+            {   
+                "credit": 1
+            }
++ Response 201 (application/json)
+    + Body
+
+            {
+                "zoho_login": "user_login2",
+                "zoho_password": "123456",
+                "zoho_token": true,
+                "sms_selected_gateway": "",
+                "sms_clickatell_username": "",
+                "sms_clickatell_password": "",
+                "sms_clickatell_api_id": "",
+                "sms_twilio_number_from": "",
+                "sms_twilio_account_sid": "",
+                "sms_twilio_auth_token": "",
+                "sms_smsglobal_username": "",
+                "sms_smsglobal_password": "",
+                "sms_smsglobal_from": "",
+                "sms_nexmo_apikey": "",
+                "sms_nexmo_apisecret": "",
+                "sms_nexmo_sender_id": "",
+                "sms_hoiio_app_id": "",
+                "sms_hoiio_access_token": "",
+                "sms_intellisms_username": "",
+                "sms_intellisms_password": "",
+                "sms_intellisms_sender": "",
+                "sms_infobip_username": "",
+                "sms_infobip_password": "",
+                "sms_infobip_sender": "",
+                "currency": "USD",
+                "currency_position": "left",
+                "price_thousand_sep": ",",
+                "price_decimal_sep": ".",
+                "price_num_decimals": "2",
+                "payment_redirect_to": "",
+                "payment_default_fields": true,
+                "paypal_email": "pay-facilitator_api1.mahbub.me",
+                "paypal_logo": "",
+                "paypal_ask_shipping": 0,
+                "paypal_message": "You are being redirected to a PayPal page for the payment.",
+                "stripe_key": "",
+                "stripe_secret_key": "",
+                "stripe_key_test": "pk_test_TgoXwICWUw5nLdozHcUFAlCB",
+                "stripe_secret_key_test": "sk_test_7XCgBLbi6mDndxZW0umwk5Bk",
+                "stripe_company_name": "we",
+                "stripe_company_desc": "Just another WordPress site",
+                "stripe_ask_billing": "",
+                "stripe_ask_shipping": "",
+                "stripe_logo": "",
+                "stripe_message": "Please wait while the payment popup is loading.",
+                "email_gateway": "wordpress",
+                "credit": true,
+                "recaptcha": {
+                    "key": "",
+                    "secret": ""
+                },
+                "mailchimp_api_key": "510f1e370ea44c1608d40dd50142e4c7-us20",
+                "campaign_monitor_key": "",
+                "constant_contact_key": "",
+                "pdf_header_type": "title",
+                "pdf_custom_html": "",
+                "pdf_logo": "",
+                "pdf_show_form_name": true,
+                "pdf_show": true,
+                "aweber_status": false,
+                "salesforce_status": true,
+                "permission": "publish_posts",
+                "gateways": {
+                    "sendgrid": "",
+                    "mailgun": "",
+                    "sparkpost": ""
+                },
+                "google_analytics_ua_tracking_id": "rrcucse.11@gmail.com",
+                "trello_token": "ab77bbd2092d75f2d8994fbdf6c3ae7b77197be4a1bd4f717c9efcc533f9abdd",
+                "trello_user_id": "566e8512e0022e385391fa7e",
+                "trello_username": "rokib2",
+                "trello_fullName": "rokib",
+                "trello_gravatarHash": "41192594a3bd644bf17130a05a78a8f1",
+                "hubspot_api_key": "bc90b147-ee8f-4b61-ae73-9b2c88e6001d",
+                "google_sheets_auth": true,
+                "getresponse_api_key": "484de59b0f01f28090f8ef62a8ff2b26",
+                "convertkit_api_key": "FdISG1RpAb_x2JWIUxA4jQ",
+                "convertkit_api_secret": "jcmiioUblW7hqeEhjZnBCXNDnR7_F7zOZH4JQRSq7M4",
+                "campaign_monitor_api_key": "VYD+6JC3lI2Vs/bk5V5v2pEWvG7tTv077Ag67Gql+bo/jZvWzKX92R9m2+JeCOQOIYF0n8baPxraxXu1Ip23SQ2KgN+bHOlzhoH5pGs2Vvdit5oWdLTECBQ3uUiMuC/hrHOCe6S4plYd9NwjUHjwBw==",
+                "constant_contact_api_key": "jdf9wd2kcjm3cpab7z8hqxkz",
+                "constant_contact_access_token": "HTKQQcfGZgcm6KBXharCJXUm"
+            }
+

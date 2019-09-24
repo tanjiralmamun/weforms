@@ -1,0 +1,37 @@
+# Group Convertkit
+
+
+## Convertkit List [/convertkit/]
+
+### Convertkit Contact List[GET]
+This API endpoint lets you check all your Convertkit contact list
+
+
+Fetches Convertkit List
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                {
+                    "id": 971409,
+                    "name": "Clare form"
+                }
+            }
+
+
+### Update A Convertkit Contact [POST]
+Using this API endpoint, you can easily update any of your Convertkit contact
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":[
+                    {
+                        "id": 971409,
+                        "name": "Clare form"
+                    }
+                ]
+            }

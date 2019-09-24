@@ -1,0 +1,56 @@
+# Group ConstantContact
+
+
+## ConstantContact List [/constantcontact/]
+
+### Check ConstantContact List[GET]
+This API lets you Check all your ConstantContact list with which you maintains email and online marketing campaigns.
+
+Fetches ConstantContact
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":[
+                    {
+                        "id":"1222604130",
+                        "name":"weforms"
+                    },
+                    {
+                        "id":"1874043012",
+                        "name":"General Interest"
+                    },
+                    {
+                        "id":"1238269254",
+                        "name":"testlist"
+                    }
+                ]
+
+            }
+
+
+### Update A ConstantContact List [POST]
+This API enables you edit and update your ConstantContact list
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":[
+                    {
+                        "id":"1222604130",
+                        "name":"weforms"
+                    },
+                    {
+                        "id":"1874043012",
+                        "name":"General Interest"
+                    },
+                    {
+                        "id":"1238269254",
+                        "name":"testlist"
+                    }
+                ]
+            }

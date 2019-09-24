@@ -1,0 +1,347 @@
+# Group Forms Integrations
+
+
+## Forms Integrations List [/forms/{form_id}/integration]
+
++ Parameters
+    + form_id (number, required) - id of Form
+
+### Forms Integrations List [GET]
+
+With Forms Integration API, you can find all the apps or modules integrated with the weForms pro version from a single place.
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "slack": {
+                    "enabled": true,
+                    "url": ""
+                },
+                "aweber": {
+                    "enabled": false,
+                    "list": "",
+                    "fields": {
+                        "email": "",
+                        "first_name": "",
+                        "last_name": "",
+                        "tags": ""
+                    }
+                },
+                "campaign-monitor": {
+                    "enabled": false,
+                    "list": "",
+                    "double": false,
+                    "fields": {
+                        "email": "",
+                        "first_name": "",
+                        "last_name": ""
+                    }
+                },
+                "constant-contact": {
+                    "enabled": false,
+                    "list": "",
+                    "double": false,
+                    "fields": {
+                        "email": "",
+                        "first_name": "",
+                        "last_name": ""
+                    }
+                },
+                "convertkit": {
+                    "enabled": false,
+                    "list": "",
+                    "double": false,
+                    "fields": {
+                        "email": "",
+                        "first_name": "",
+                        "last_name": ""
+                    }
+                },
+                "getresponse": {
+                    "enabled": false,
+                    "list": "",
+                    "double": false,
+                    "fields": {
+                        "email": "",
+                        "first_name": "",
+                        "last_name": ""
+                    }
+                },
+                "google-analytics": {
+                    "enabled": false,
+                    "fields": {
+                        "tracking_id": "rrcucse.11@gmail.com",
+                        "event_category": "Form",
+                        "event_action": "Submission",
+                        "event_label": "",
+                        "event_value": ""
+                    }
+                },
+                "google-sheets": {
+                    "enabled": false,
+                    "spread_sheet": "",
+                    "sheet": "",
+                    "fields": [],
+                    "meta_data": [
+                        "created"
+                    ]
+                },
+                "hubspot": {
+                    "enabled": false,
+                    "guid": "",
+                    "fields": {
+                        "email": ""
+                    }
+                },
+                "mailchimp": {
+                    "enabled": false,
+                    "list": "",
+                    "interests": [],
+                    "double": false,
+                    "fields": {
+                        "email": "",
+                        "first_name": "",
+                        "last_name": ""
+                    }
+                },
+                "salesforce": {
+                    "enabled": false,
+                    "list": "",
+                    "type": "Contact",
+                    "fields": [],
+                    "formFields": [
+                        {
+                            "salesForceField": "",
+                            "formField": "",
+                            "salesForceCustom": "",
+                            "formCustom": ""
+                        }
+                    ]
+                },
+                "trello": {
+                    "enabled": false,
+                    "board": "",
+                    "list": "",
+                    "member": "",
+                    "fields": {
+                        "title": "",
+                        "description": ""
+                    }
+                },
+                "zapier": {
+                    "enabled": false,
+                    "url": "",
+                    "fields": []
+                },
+                "zoho": {
+                    "enabled": false,
+                    "type": "Contacts",
+                    "update": 1,
+                    "fields": [],
+                    "formFields": [
+                        {
+                            "zohoField": "",
+                            "formField": "",
+                            "zohoCustom": "",
+                            "formCustom": ""
+                        }
+                    ]
+                },
+                "mailpoet": {
+                    "enabled": true,
+                    "list": "",
+                    "double": false,
+                    "fields": {
+                        "email": "",
+                        "first_name": "",
+                        "last_name": ""
+                    }
+                }
+            }
+
+
+### Update Forms Integrations [PUT]
+This API will let you update any of the weForms integrations by enabling or disabling them with a button. It's a matter of your one click.
+
++ name (string,optional) -
++ integrations (object,required) - 
+
++ Request
+    + Body
+
+            {
+                {
+                    "name": "Contact Form",
+                    "integrations":{  
+                        "campaign-monitor":{  
+                            "enabled":true,
+                            "list":"",
+                            "double":false,
+                            "fields":{  
+                                "email":"",
+                                "first_name":"",
+                                "last_name":""
+                            }
+                        },
+                        "slack": {
+                                "enabled": true,
+                                "url": ""
+                            }
+                    }
+                }
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1462,
+                "integrations": {
+                    "campaign-monitor": {
+                        "enabled": true,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "slack": {
+                        "enabled": true,
+                        "url": ""
+                    },
+                    "aweber": {
+                        "enabled": false,
+                        "list": "",
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": "",
+                            "tags": ""
+                        }
+                    },
+                    "constant-contact": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "convertkit": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "getresponse": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "google-analytics": {
+                        "enabled": false,
+                        "fields": {
+                            "tracking_id": "rrcucse.11@gmail.com",
+                            "event_category": "Form",
+                            "event_action": "Submission",
+                            "event_label": "",
+                            "event_value": ""
+                        }
+                    },
+                    "google-sheets": {
+                        "enabled": false,
+                        "spread_sheet": "",
+                        "sheet": "",
+                        "fields": [],
+                        "meta_data": [
+                            "created"
+                        ]
+                    },
+                    "hubspot": {
+                        "enabled": false,
+                        "guid": "",
+                        "fields": {
+                            "email": ""
+                        }
+                    },
+                    "mailchimp": {
+                        "enabled": false,
+                        "list": "",
+                        "interests": [],
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "salesforce": {
+                        "enabled": false,
+                        "list": "",
+                        "type": "Contact",
+                        "fields": [],
+                        "formFields": [
+                            {
+                                "salesForceField": "",
+                                "formField": "",
+                                "salesForceCustom": "",
+                                "formCustom": ""
+                            }
+                        ]
+                    },
+                    "trello": {
+                        "enabled": false,
+                        "board": "",
+                        "list": "",
+                        "member": "",
+                        "fields": {
+                            "title": "",
+                            "description": ""
+                        }
+                    },
+                    "zapier": {
+                        "enabled": false,
+                        "url": "",
+                        "fields": []
+                    },
+                    "zoho": {
+                        "enabled": false,
+                        "type": "Contacts",
+                        "update": 1,
+                        "fields": [],
+                        "formFields": [
+                            {
+                                "zohoField": "",
+                                "formField": "",
+                                "zohoCustom": "",
+                                "formCustom": ""
+                            }
+                        ]
+                    },
+                    "mailpoet": {
+                        "enabled": true,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    }
+                }
+            }
+

@@ -1,0 +1,243 @@
+# Group Forms Notification
+
+
+## Forms Notification List [/forms/{form_id}/notifications]
+
++ Parameters
+    + form_id (number, required) - id of Form
+
+### Forms Notification List [GET]
+
+With this API, you can check weForms notification field and other related setting options.
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                {
+                    "active": "true",
+                    "type": "email",
+                    "smsTo": "",
+                    "smsText": "[{form_name}] New Form Submission #{entry_id}",
+                    "name": "Admin Notification",
+                    "subject": "[{form_name}] New Form Submission #{entry_id}",
+                    "to": "{admin_email}",
+                    "replyTo": "{field:email}",
+                    "message": "<p>{all_fields}</p>",
+                    "fromName": "{site_name}",
+                    "fromAddress": "{admin_email}",
+                    "cc": "",
+                    "bcc": "",
+                    "weforms_cond": {
+                        "condition_status": "no",
+                        "cond_logic": "any",
+                        "conditions": [
+                            {
+                                "name": "",
+                                "operator": "=",
+                                "option": ""
+                            }
+                        ]
+                    }
+                }
+            }
+
+
+### Create A Form Notification [POST]
+Using This endpoint, you can easily create a new notification or customize your notification option like who will get the notification- admin or someone else. Also, you can select your notification type- Email or SMS etc. 
+
++ name (string,optional) -
++ notifications (object,required) -
+
++ Request (application/json)
+    + Body
+    
+            {
+                "name" : "",
+                "notifications" : {
+                    {  
+                        "active":"false",
+                        "weforms_cond":{  
+                            "condition_status":"yes",
+                            "cond_logic":"all",
+                            "conditions":[  
+                                {  
+                                    "name":"",
+                                    "operator":"=",
+                                    "option":""
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                 "id": 1114,
+                "notifications": [
+                    {
+                        "active": "true",
+                        "type": "email",
+                        "smsTo": "",
+                        "smsText": "[{form_name}] New Form Submission #{entry_id}",
+                        "name": "Admin Notification",
+                        "subject": "[{form_name}] New Form Submission #{entry_id}",
+                        "to": "{admin_email}",
+                        "replyTo": "{field:email}",
+                        "message": "<p>{all_fields}</p>",
+                        "fromName": "{site_name}",
+                        "fromAddress": "{admin_email}",
+                        "cc": "",
+                        "bcc": "",
+                        "weforms_cond": {
+                            "condition_status": "no",
+                            "cond_logic": "any",
+                            "conditions": [
+                                {
+                                    "name": "",
+                                    "operator": "=",
+                                    "option": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "active": "false",
+                        "type": "email",
+                        "smsTo": "",
+                        "smsText": "[{form_name}] New Form Submission #{entry_id}",
+                        "name": "Admin Notification",
+                        "subject": "[{form_name}] New Form Submission #{entry_id}",
+                        "to": "{admin_email}",
+                        "replyTo": "{field:email}",
+                        "message": "{all_fields}",
+                        "fromName": "{site_name}",
+                        "fromAddress": "{admin_email}",
+                        "cc": "",
+                        "bcc": "",
+                        "weforms_cond": {
+                            "condition_status": "yes",
+                            "cond_logic": "all",
+                            "conditions": [
+                                {
+                                    "name": "",
+                                    "operator": "=",
+                                    "option": ""
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+
+
+### Update A Form Notification [PUT]
+This API will help you to update your notification feature through specific changes you want to make. There are options like notification name, type, to whom it will be redirected, message body and more
++ name (string,optional) -
++ notifications (object,required) -
+
++ Request (application/json)
+    + Body
+    
+            {
+                "name" : "",
+                "notifications" : {
+                    {  
+                        "active":"false",
+                        "weforms_cond":{  
+                            "condition_status":"yes",
+                            "cond_logic":"all",
+                            "conditions":[  
+                                {  
+                                    "name":"",
+                                    "operator":"=",
+                                    "option":""
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1114,
+                "notifications": [
+                    {
+                        "active": "true",
+                        "type": "email",
+                        "smsTo": "",
+                        "smsText": "[{form_name}] New Form Submission #{entry_id}",
+                        "name": "Admin Notification",
+                        "subject": "[{form_name}] New Form Submission #{entry_id}",
+                        "to": "{admin_email}",
+                        "replyTo": "{field:email}",
+                        "message": "<p>{all_fields}</p>",
+                        "fromName": "{site_name}",
+                        "fromAddress": "{admin_email}",
+                        "cc": "",
+                        "bcc": "",
+                        "weforms_cond": {
+                            "condition_status": "no",
+                            "cond_logic": "any",
+                            "conditions": [
+                                {
+                                    "name": "",
+                                    "operator": "=",
+                                    "option": ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "active": "false",
+                        "type": "email",
+                        "smsTo": "",
+                        "smsText": "[{form_name}] New Form Submission #{entry_id}",
+                        "name": "Admin Notification",
+                        "subject": "[{form_name}] New Form Submission #{entry_id}",
+                        "to": "{admin_email}",
+                        "replyTo": "{field:email}",
+                        "message": "{all_fields}",
+                        "fromName": "{site_name}",
+                        "fromAddress": "{admin_email}",
+                        "cc": "",
+                        "bcc": "",
+                        "weforms_cond": {
+                            "condition_status": "yes",
+                            "cond_logic": "all",
+                            "conditions": [
+                                {
+                                    "name": "",
+                                    "operator": "=",
+                                    "option": ""
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+
+## Forms Notification List [/forms/{form_id}/notifications{?index}]
+
+### Delete A Forms Notification [DELETE]
+Yes, with this API, you will be able to delete any of your running notification order with a single click.
+
++ Parameters
+    + index (number,required)
+
++ Request (application/json)
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 1114,
+                "notifications": [
+
+                ]
+            }

@@ -1,0 +1,1009 @@
+# Group Forms
+
+
+## Forms List [/forms/{?per_page,page,status,order,orderby,search}]
+
+### Forms List [GET]
+
+Forms List API helps you to check all your forms from the list.
+
++ Parameters
+
+    + per_page: 20 (number, optional) - The number of results per page.
+        + Default: `20`
+    + page: 1 (number, optional) - The current page number of results.
+        + Default: `1`
+    + status (enum,optional) -  The status of Forms (publish,draft,pending)
+        + Default : `DESC`
+    + order (enum,optional) - The order of Forms (ASC,DESC)
+        + Default : `DESC`
+    + orderby (enum,optional) - the order by forms ( author,post_date,id,title)
+        + Default : `post_date`
+    + search (string,optional) -
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                {
+                    "id": 1290,
+                    "name": "test Form",
+                    "created_by": "admin",
+                    "created_on": "2019-08-09 10:19:03",
+                    "status": "Open",
+                    "status_info": "",
+                    "fields": 2,
+                    "entries": 8,
+                    "views": 0,
+                    "payments": 0,
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/1290"
+                        },
+                        "collection": {
+                            "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms"
+                        }
+                    }
+                },
+                {
+                    "id": 1177,
+                    "name": "Blank Form",
+                    "created_by": "admin",
+                    "created_on": "2019-07-24 18:25:50",
+                    "status": "Open",
+                    "status_info": "",
+                    "fields": 1,
+                    "entries": 2,
+                    "views": 0,
+                    "payments": 0,
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/1177"
+                        },
+                        "collection": {
+                            "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms"
+                        }
+                    }
+                }
+            }
+
+
+### Create A Form [POST]
+Using this API endpoint, you can create a new form with adding your desired fields.
++ template: (string,optional) -
++ name: (string,optional) -
++ settings: (object,optional) -
++ notifications: (object,optional) -
++ fields: (object,optional) -
++ integrations: (object,optional)
+
++ Request (application/json)
+    + Body
+    
+            {
+                "name": "Contact Form",
+                "settings":{  
+                        "redirect_to":"same",
+                        "message":"Thanks for contacting us! We will get in touch with you shortly."
+                },
+	            "notifications" :[
+		            {  
+                        "active":"false",
+                        "type":"email",
+                        "cc":"",
+                        "bcc":"",
+                        "weforms_cond":{  
+                            "condition_status":"no",
+                            "cond_logic":"any",
+                            "conditions":[  
+                                {  
+                                    "name":"",
+                                    "operator":"=",
+                                    "option":""
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "fields" : [
+                ],
+                "integrations": {
+                    "campaign-monitor": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "slack": {
+                        "enabled": true,
+                        "url": ""
+                    }
+                }
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1304,
+                "name": "Contact Form",
+                "fields": [],
+                "settings": {
+                    "redirect_to": "same",
+                    "message": "Thanks for contacting us! We will get in touch with you shortly.",
+                    "page_id": "",
+                    "url": "",
+                    "submit_text": "Submit Query",
+                    "schedule_form": "false",
+                    "schedule_start": "",
+                    "schedule_end": "",
+                    "sc_pending_message": "Form submission hasn't been started yet",
+                    "sc_expired_message": "Form submission is now closed.",
+                    "require_login": "false",
+                    "req_login_message": "You need to login to submit a query.",
+                    "limit_entries": "false",
+                    "limit_number": "100",
+                    "limit_message": "Sorry, we have reached the maximum number of submissions.",
+                    "label_position": "above",
+                    "use_theme_css": "wpuf-style",
+                    "quiz_form": "no",
+                    "shuffle_question_order": "no",
+                    "release_grade": "after_submission",
+                    "respondent_can_see": [
+                        "missed_questions",
+                        "correct_answers",
+                        "point_values"
+                    ],
+                    "total_points": 0,
+                    "enable_multistep": false,
+                    "multistep_progressbar_type": "progressive",
+                    "payment_paypal_images": "https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg",
+                    "payment_paypal_label": "PayPal",
+                    "payment_stripe_label": "Credit Card",
+                    "payment_stripe_images": [
+                        "visa",
+                        "mastercard",
+                        "amex",
+                        "discover"
+                    ],
+                    "payment_stripe_deactivate": "",
+                    "stripe_mode": "live",
+                    "stripe_page_id": "",
+                    "stripe_override_keys": "",
+                    "stripe_email": "",
+                    "stripe_key": "",
+                    "stripe_secret_key": "",
+                    "stripe_key_test": "",
+                    "stripe_secret_key_test": "",
+                    "stripe_prefill_email": "",
+                    "stripe_user_email_field": "",
+                    "payment_paypal_deactivate": "",
+                    "paypal_mode": "live",
+                    "paypal_type": "_cart",
+                    "paypal_override": "",
+                    "paypal_email": "",
+                    "paypal_page_id": "",
+                    "paypal_prefill_email": "",
+                    "paypal_user_email_field": ""
+                },
+                "notifications": [],
+                "integrations": {
+                    "campaign-monitor": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "slack": {
+                        "enabled": true,
+                        "url": ""
+                    }
+                },
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/1304"
+                    },
+                    "collection": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms"
+                    }
+                }
+            }
+
+
+## Manage Single Forms [/forms/{form_id}]
+
++ Parameters
+    + form_id (string) - id of the Forms in the form of an string
+
+### Retrieve A Form [GET]
+This API enables you to retrieve a form easily with a single click.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 375,
+                "name": "Admissions Form",
+                "created_by": "admin",
+                "created_on": "2019-05-02 05:27:33",
+                "status": "Open",
+                "status_info": "",
+                "fields": [
+                    {
+                        "template": "name_field",
+                        "name": "format",
+                        "label": "Name",
+                        "required": "yes",
+                        "id": 376,
+                        "width": "large",
+                        "css": "",
+                        "placeholder": "",
+                        "default": "",
+                        "size": 40,
+                        "help": "",
+                        "is_meta": "yes",
+                        "is_new": true,
+                        "wpuf_cond": {
+                            "condition_status": "no",
+                            "cond_field": [],
+                            "cond_operator": [
+                                "="
+                            ],
+                            "cond_option": [
+                                "- select -"
+                            ],
+                            "cond_logic": "all"
+                        },
+                        "format": "first-middle-last",
+                        "first_name": {
+                            "placeholder": "",
+                            "default": "",
+                            "sub": "First"
+                        },
+                        "middle_name": {
+                            "placeholder": "",
+                            "default": "",
+                            "sub": "Middle"
+                        },
+                        "last_name": {
+                            "placeholder": "",
+                            "default": "",
+                            "sub": "Last"
+                        },
+                        "inline": "yes",
+                        "hide_subs": false
+                    },
+                    {
+                        "template": "date_field",
+                        "name": "birth_date",
+                        "label": "Birth Date",
+                        "required": "yes",
+                        "id": 377,
+                        "width": "large",
+                        "css": "",
+                        "placeholder": "",
+                        "default": "",
+                        "size": 40,
+                        "help": "",
+                        "is_meta": "yes",
+                        "is_new": true,
+                        "wpuf_cond": {
+                            "condition_status": "no",
+                            "cond_field": [],
+                            "cond_operator": [
+                                "="
+                            ],
+                            "cond_option": [
+                                "- select -"
+                            ],
+                            "cond_logic": "all"
+                        },
+                        "format": "dd/mm/yy",
+                        "time": "",
+                        "is_publish_time": ""
+                    }
+                ],
+                "settings": {
+                    "redirect_to": "same",
+                    "message": "Thanks for contacting us! We will get in touch with you shortly.",
+                    "page_id": "",
+                    "url": "",
+                    "submit_text": "Submit",
+                    "schedule_form": "false",
+                    "schedule_start": "",
+                    "schedule_end": "",
+                    "sc_pending_message": "Form submission hasn't been started yet",
+                    "sc_expired_message": "Form submission is now closed.",
+                    "require_login": "false",
+                    "req_login_message": "You need to login to submit a query.",
+                    "limit_entries": "false",
+                    "limit_number": "100",
+                    "limit_message": "Sorry, we have reached the maximum number of submissions.",
+                    "label_position": "above",
+                    "use_theme_css": "wpuf-style",
+                    "quiz_form": "no",
+                    "shuffle_question_order": "no",
+                    "release_grade": "after_submission",
+                    "respondent_can_see": [
+                        "missed_questions",
+                        "correct_answers",
+                        "point_values"
+                    ],
+                    "total_points": 0,
+                    "enable_multistep": false,
+                    "multistep_progressbar_type": "progressive",
+                    "payment_paypal_images": "https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg",
+                    "payment_paypal_label": "PayPal",
+                    "payment_stripe_label": "Credit Card",
+                    "payment_stripe_images": [
+                        "visa",
+                        "mastercard",
+                        "amex",
+                        "discover"
+                    ],
+                    "payment_stripe_deactivate": "",
+                    "stripe_mode": "live",
+                    "stripe_page_id": "",
+                    "stripe_override_keys": "",
+                    "stripe_email": "",
+                    "stripe_key": "",
+                    "stripe_secret_key": "",
+                    "stripe_key_test": "",
+                    "stripe_secret_key_test": "",
+                    "stripe_prefill_email": "",
+                    "stripe_user_email_field": "",
+                    "payment_paypal_deactivate": "",
+                    "paypal_mode": "live",
+                    "paypal_type": "_cart",
+                    "paypal_override": "",
+                    "paypal_email": "",
+                    "paypal_page_id": "",
+                    "paypal_prefill_email": "",
+                    "paypal_user_email_field": ""
+                },
+                "notifications": [
+                    {
+                        "active": "true",
+                        "type": "email",
+                        "smsTo": "",
+                        "smsText": "[{form_name}] New Form Submission #{entry_id}",
+                        "name": "Admin Notification",
+                        "subject": "[{form_name}] New Form Submission #{entry_id}",
+                        "to": "{admin_email}",
+                        "replyTo": "{field:email}",
+                        "message": "{all_fields}",
+                        "fromName": "{site_name}",
+                        "fromAddress": "{admin_email}",
+                        "cc": "",
+                        "bcc": "",
+                        "weforms_cond": {
+                            "condition_status": "no",
+                            "cond_logic": "any",
+                            "conditions": [
+                                {
+                                    "name": "",
+                                    "operator": "=",
+                                    "option": ""
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "integrations": [],
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/375"
+                    },
+                    "collection": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms"
+                    }
+                }
+            }
+
+### Edit & Update A Form [PUT]
+Sometimes you may need to edit or make some customiazations within your form. This API endpoint allows you to edit and update any of your created forms.
+
++ template: (string,optional) -
++ name: (string,optional) -
++ settings: (object,optional) -
++ notifications: (object,optional) -
++ fields: (object,optional) -
++ integrations: (object,optional)
+
++ Request (application/json)
+    + Body
+    
+            {
+                "name": "Contact Form",
+                "settings":{  
+                        "redirect_to":"same",
+                        "message":"Thanks for contacting us! We will get in touch with you shortly."
+                },
+	            "notifications" :[
+		            {  
+                        "active":"false",
+                        "type":"email",
+                        "cc":"",
+                        "bcc":"",
+                        "weforms_cond":{  
+                            "condition_status":"no",
+                            "cond_logic":"any",
+                            "conditions":[  
+                                {  
+                                    "name":"",
+                                    "operator":"=",
+                                    "option":""
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "fields" : [
+                ],
+                "integrations": {
+                    "campaign-monitor": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "slack": {
+                        "enabled": true,
+                        "url": ""
+                    }
+                }
+            }
+            
++ Response 201 (application/json)
+    + Body
+
+            {
+                "id": 1304,
+                "name": "Contact Form",
+                "fields": [],
+                "settings": {
+                    "redirect_to": "same",
+                    "message": "Thanks for contacting us! We will get in touch with you shortly.",
+                    "page_id": "",
+                    "url": "",
+                    "submit_text": "Submit Query",
+                    "schedule_form": "false",
+                    "schedule_start": "",
+                    "schedule_end": "",
+                    "sc_pending_message": "Form submission hasn't been started yet",
+                    "sc_expired_message": "Form submission is now closed.",
+                    "require_login": "false",
+                    "req_login_message": "You need to login to submit a query.",
+                    "limit_entries": "false",
+                    "limit_number": "100",
+                    "limit_message": "Sorry, we have reached the maximum number of submissions.",
+                    "label_position": "above",
+                    "use_theme_css": "wpuf-style",
+                    "quiz_form": "no",
+                    "shuffle_question_order": "no",
+                    "release_grade": "after_submission",
+                    "respondent_can_see": [
+                        "missed_questions",
+                        "correct_answers",
+                        "point_values"
+                    ],
+                    "total_points": 0,
+                    "enable_multistep": false,
+                    "multistep_progressbar_type": "progressive",
+                    "payment_paypal_images": "https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg",
+                    "payment_paypal_label": "PayPal",
+                    "payment_stripe_label": "Credit Card",
+                    "payment_stripe_images": [
+                        "visa",
+                        "mastercard",
+                        "amex",
+                        "discover"
+                    ],
+                    "payment_stripe_deactivate": "",
+                    "stripe_mode": "live",
+                    "stripe_page_id": "",
+                    "stripe_override_keys": "",
+                    "stripe_email": "",
+                    "stripe_key": "",
+                    "stripe_secret_key": "",
+                    "stripe_key_test": "",
+                    "stripe_secret_key_test": "",
+                    "stripe_prefill_email": "",
+                    "stripe_user_email_field": "",
+                    "payment_paypal_deactivate": "",
+                    "paypal_mode": "live",
+                    "paypal_type": "_cart",
+                    "paypal_override": "",
+                    "paypal_email": "",
+                    "paypal_page_id": "",
+                    "paypal_prefill_email": "",
+                    "paypal_user_email_field": ""
+                },
+                "notifications": [],
+                "integrations": {
+                    "aweber": {
+                        "enabled": true,
+                        "list": "",
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": "",
+                            "tags": ""
+                        }
+                    },
+                    "constant-contact": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "convertkit": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "getresponse": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "google-analytics": {
+                        "enabled": true,
+                        "fields": {
+                            "tracking_id": "rrcucse.11@gmail.com",
+                            "event_category": "Form",
+                            "event_action": "Submission",
+                            "event_label": "",
+                            "event_value": ""
+                        }
+                    },
+                    "campaign-monitor": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "slack": {
+                        "enabled": true,
+                        "url": ""
+                    }
+                },
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/1304"
+                    },
+                    "collection": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms"
+                    }
+                }
+            }
+
+### Delete A Form [DELETE]
+Delete API endpoint lets you delete single Form from your list.
++ Request (application/json)
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 1325,
+                "message": "form  deleted successfully",
+                "data": {
+                    "status": 200
+                }
+            }
+
+
+## Duplicate A Form [/forms/{form_id}/duplicate]
+
+### Duplicate A Form [POST]
+It's an outstanding feature of weForms. Using this API endpoint, you can duplicate any of your forms. Not only the basic form, it will let you copy all the details of that particular form.
+
++ Parameters
+    + form_id (number,required) - Id of Form
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 1328,
+                "name": "Blank Form (#1112) (#1328)",
+                "fields": [
+                    {
+                        "template": "file_upload",
+                        "name": "file_upload",
+                        "label": "File Upload",
+                        "required": "no",
+                        "width": "large",
+                        "css": "",
+                        "placeholder": "",
+                        "default": "",
+                        "size": 40,
+                        "help": "",
+                        "is_meta": "yes",
+                        "wpuf_cond": {
+                            "condition_status": "no",
+                            "cond_field": [
+                                ""
+                            ],
+                            "cond_operator": [
+                                "="
+                            ],
+                            "cond_option": [
+                                ""
+                            ],
+                            "cond_logic": "all"
+                        },
+                        "max_size": "10240000",
+                        "count": "1",
+                        "extension": [
+                            "images",
+                            "audio",
+                            "video",
+                            "pdf",
+                            "office",
+                            "zip",
+                            "exe",
+                            "csv"
+                        ],
+                        "id": 1329
+                    }
+                ],
+                "settings": {
+                    "redirect_to": "same",
+                    "message": "Thanks for contacting us! We will get in touch with you shortly.",
+                    "page_id": "",
+                    "url": "",
+                    "submit_text": "Submit Query",
+                    "submit_button_cond": {
+                        "condition_status": "no",
+                        "cond_logic": "any",
+                        "conditions": [
+                            {
+                                "name": "",
+                                "operator": "=",
+                                "option": ""
+                            }
+                        ]
+                    },
+                    "schedule_form": "false",
+                    "schedule_start": "",
+                    "schedule_end": "",
+                    "sc_pending_message": "Form submission hasn't been started yet",
+                    "sc_expired_message": "Form submission is now closed.",
+                    "require_login": "false",
+                    "req_login_message": "You need to login to submit a query.",
+                    "limit_entries": "false",
+                    "limit_number": "100",
+                    "limit_message": "Sorry, we have reached the maximum number of submissions.",
+                    "label_position": "above",
+                    "use_theme_css": "wpuf-style",
+                    "quiz_form": "no",
+                    "shuffle_question_order": "no",
+                    "release_grade": "after_submission",
+                    "respondent_can_see": [
+                        "missed_questions",
+                        "correct_answers",
+                        "point_values"
+                    ],
+                    "total_points": 0,
+                    "enable_multistep": false,
+                    "multistep_progressbar_type": "progressive",
+                    "payment_paypal_images": "https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg",
+                    "payment_paypal_label": "PayPal",
+                    "payment_stripe_label": "Credit Card",
+                    "payment_stripe_images": [
+                        "visa",
+                        "mastercard",
+                        "amex",
+                        "discover"
+                    ],
+                    "payment_stripe_deactivate": "",
+                    "stripe_mode": "live",
+                    "stripe_page_id": "",
+                    "stripe_override_keys": "",
+                    "stripe_email": "",
+                    "stripe_key": "",
+                    "stripe_secret_key": "",
+                    "stripe_key_test": "",
+                    "stripe_secret_key_test": "",
+                    "stripe_prefill_email": "",
+                    "stripe_user_email_field": "",
+                    "payment_paypal_deactivate": "",
+                    "paypal_mode": "live",
+                    "paypal_type": "_cart",
+                    "paypal_override": "",
+                    "paypal_email": "",
+                    "paypal_page_id": "",
+                    "paypal_prefill_email": "",
+                    "paypal_user_email_field": ""
+                },
+                "notifications": [
+                    {
+                        "active": "true",
+                        "type": "email",
+                        "smsTo": "",
+                        "smsText": "[{form_name}] New Form Submission #{entry_id}",
+                        "name": "Admin Notification",
+                        "subject": "[{form_name}] New Form Submission #{entry_id}",
+                        "to": "{admin_email}",
+                        "replyTo": "{field:email}",
+                        "message": "<p>{all_fields}</p>",
+                        "fromName": "{site_name}",
+                        "fromAddress": "{admin_email}",
+                        "cc": "",
+                        "bcc": "",
+                        "weforms_cond": {
+                            "condition_status": "no",
+                            "cond_logic": "any",
+                            "conditions": [
+                                {
+                                    "name": "",
+                                    "operator": "=",
+                                    "option": ""
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "integrations": {
+                    "slack": {
+                        "enabled": false,
+                        "url": ""
+                    },
+                    "aweber": {
+                        "enabled": false,
+                        "list": "",
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": "",
+                            "tags": ""
+                        }
+                    },
+                    "campaign-monitor": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "constant-contact": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "convertkit": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "getresponse": {
+                        "enabled": false,
+                        "list": "",
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "google-analytics": {
+                        "enabled": false,
+                        "fields": {
+                            "tracking_id": "rrcucse.11@gmail.com",
+                            "event_category": "Form",
+                            "event_action": "Submission",
+                            "event_label": "",
+                            "event_value": ""
+                        }
+                    },
+                    "google-sheets": {
+                        "enabled": false,
+                        "spread_sheet": "",
+                        "sheet": "",
+                        "fields": [],
+                        "meta_data": [
+                            "created"
+                        ]
+                    },
+                    "hubspot": {
+                        "enabled": false,
+                        "guid": "",
+                        "fields": {
+                            "email": ""
+                        }
+                    },
+                    "mailchimp": {
+                        "enabled": false,
+                        "list": "",
+                        "interests": [],
+                        "double": false,
+                        "fields": {
+                            "email": "",
+                            "first_name": "",
+                            "last_name": ""
+                        }
+                    },
+                    "salesforce": {
+                        "enabled": false,
+                        "list": "",
+                        "type": "Contact",
+                        "fields": [],
+                        "formFields": [
+                            {
+                                "salesForceField": "",
+                                "formField": "",
+                                "salesForceCustom": "",
+                                "formCustom": ""
+                            }
+                        ]
+                    },
+                    "trello": {
+                        "enabled": false,
+                        "board": "",
+                        "list": "",
+                        "member": "",
+                        "fields": {
+                            "title": "",
+                            "description": ""
+                        }
+                    },
+                    "zapier": {
+                        "enabled": false,
+                        "url": "",
+                        "fields": []
+                    },
+                    "zoho": {
+                        "enabled": false,
+                        "type": "Contacts",
+                        "update": 1,
+                        "fields": [],
+                        "formFields": [
+                            {
+                                "zohoField": "",
+                                "formField": "",
+                                "zohoCustom": "",
+                                "formCustom": ""
+                            }
+                        ]
+                    }
+                },
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms/1328"
+                    },
+                    "collection": {
+                        "href": "http://localhost:8888/wp-testing/wp-json/weforms/v1/forms"
+                    }
+                }
+            }
+
+## Bulk delete  Forms [/forms/]
+
+### Delete Forms in Bulk Amount [POST]
+If you need to clean your Forms directory, this API will help you delete a bulk amount of your forms. Just mark the certain forms and click on Delete button.
++ ids (object,required) - object of forms id
+
++ Request (application/json)
+    + Body
+
+            {
+                ids:[
+                    1,
+                    2
+                ]
+            }   
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "1326": "form  deleted successfully ",
+                "1327": "form  deleted successfully "
+            }
+
+## Report of Form [/forms/{form_id}/reports]
+
+### Check Reports of Forms [POST]
+Using this piece of API, you can easily get reports of your published forms and saved entries.
+
++ Parameters
+    + form_id (number,required) - Id of Form
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                {
+                    "count": "40",
+                    "bg_color": [
+                        "#EC5657",
+                        "#EC5657"
+                    ],
+                    "chart_type": "bar",
+                    "template": "name_field",
+                    "field_name": "name",
+                    "field_label": "Name",
+                    "label": [
+                        "abc@gmail.com",
+                        "rrcucse.11@gmail.com"
+                    ],
+                    "data": [
+                        38,
+                        2
+                    ]
+                }
+
+            }
+
+## Import of Forms [/forms/import]
+
+### Import Old & Other Forms [POST]
+This API lets you import your Forms (backed up json files) with ease. Also, you can import other WordPress form plugins using this API.
+
++ Response 200 (application/json)
+    + Body
+
+            {
+
+            }
+
+
+## Export of Forms [/forms/export/{?selected_forms,export_type}]
+
+### Export Existing Forms [GET]
+Export Forms API lets you export all your existing forms. You can export all the forms at once or selecting a specific one separately. Moreover, you can export your form entries with this API.
+
++ Parameters
+    + selected_forms (array,required) - Array of Form Id
+    + export_type (enum,optional ) - (selected,All)
+
++ Response 200 (application/json)
+    + Body
+
+            {
+
+            }

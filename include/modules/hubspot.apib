@@ -1,0 +1,75 @@
+# Group Hubspot
+
+
+## Hubspot List [/hubspot/]
+
+### Hubspot Contact List[GET]
+This API lets you see and check your Hubspost contact list
+
+Fetches Hubspot
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":{
+                    "44614df3-e2e6-40f4-b880-cebe96ff5b52":{
+                        "id":5809480,
+                        "guid":"44614df3-e2e6-40f4-b880-cebe96ff5b52",
+                        "name":"Subscribe to Default HubSpot Blog Notifications 9125472258",
+                        "fields":[
+                            {
+                                "id":"email",
+                                "name":"Email",
+                                "required":true
+                            },
+                            {
+                                "id":"blog_default_hubspot_blog_9125472258_subscription",
+                                "name":"Notification Frequency",
+                                "required":false
+                            },
+                            {
+                                "id":"lifecyclestage",
+                                "name":"Lifecycle Stage",
+                                "required":false
+                            }
+                        ]
+                    }
+                }
+            }
+
+
+### Update A Hubspot Contact [POST]
+Using this API endpoint you can edit and update your Hubspot contact list
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "success": true,
+                "data":{
+                    "44614df3-e2e6-40f4-b880-cebe96ff5b52":{
+                        "id":5809480,
+                        "guid":"44614df3-e2e6-40f4-b880-cebe96ff5b52",
+                        "name":"Subscribe to Default HubSpot Blog Notifications 9125472258",
+                        "fields":[
+                            {
+                                "id":"email",
+                                "name":"Email",
+                                "required":true
+                            },
+                            {
+                                "id":"blog_default_hubspot_blog_9125472258_subscription",
+                                "name":"Notification Frequency",
+                                "required":false
+                            },
+                            {
+                                "id":"lifecyclestage",
+                                "name":"Lifecycle Stage",
+                                "required":false
+                            }
+                        ]
+                    }
+                }
+            }

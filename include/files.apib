@@ -1,0 +1,60 @@
+# Group Files
+
+## Upload Image [/uploads/{form_id}/files]
+
+### Upload Image [POST]
+weForms allows you and your users to add media files through a specific form field. This API will enable your users to upload images to your WordPress site.
+
++ field_id (number,required) -
++ file     (File,required) -
+
++ Parameters
+    + form_id (number, required) - id of Form
+
++ Request (application/json)
+    + Body
+
+            {
+                "file" : " ",
+                "field_id" : 1464,
+            }   
+
++ Response 201 (application/json)
+    + Body
+
+            {
+
+                "form_id": 1462,
+                "attach_id": 1465,
+                "link": "http://localhost:8888/wp-testing/wp-content/uploads/2019/08/brand-2-150x100.jpg",
+                "html ": "<li class=\"ui-state-default wpuf-image-wrap thumbnail\"><div class=\"attachment-name\"><img src=\"http://localhost:8888/wp-testing/wp-content/uploads/2019/08/brand-2-150x100.jpg\" alt=\"brand-2\" /></div><input type=\"hidden\" name=\"wpuf_files[image][]\" value=\"1465\"><div class=\"caption\"><a href=\"#\" class=\"attachment-delete\" data-attach_id=\"1465\"> <img src=\"http://localhost:8888/wp-testing/wp-content/plugins/weforms/assets/images/del-img.png\" /></a><span class=\"wpuf-drag-file\"> <img src=\"http://localhost:8888/wp-testing/wp-content/plugins/weforms/assets/images/move-img.png\" /></span></div></li>"
+                
+            }
+
+## Delete Image [/uploads/{form_id}/files/{id}] 
+
++ Parameters
+    + form_id (number, required) - id of Form
+    + id (number,required) - File of Id
+
+### Delete Image [DELETE]
+With this API, you can delete any of the uploaded images from your database by one click
+
++ Request (application/json)
+    + Body
+
+            {
+                "force" : true
+            }   
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "id": 1465,
+                "message": "File deleted successfully",
+                "data": {
+                    "status": 200
+                }
+            }
+

@@ -1,0 +1,39 @@
+# Group Modules
+
+
+## Modules List [/modules/]
+
+
+### Checking All Modules [GET]
+This API endpoint enables you check the module list of weForms pro
+
+Fetches Modules
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+
+            }
+
+
+### Toggle Modules [POST]
+Using this API, you can activate or deactivate any of the modules from your list
+
+Activate or Deactive Modules
+
++ Request
+    + Body
+    
+            {
+                "module": "getresponse/getresponse.php",
+                "type": "activate"
+            }
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "message": "getresponse/getresponse.php Activated",
+                "code": ""
+            }

@@ -1,0 +1,162 @@
+# Group Trello
+
+
+## Trello List [/trello/lists]
+
+### Trello Contact List[GET]
+This API helps you easily check all your Trello contact list
+
+Fetches Trello
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "": [],
+                "5cb592636b6de355ff495176": [
+                    {
+                        "id": "5cb592636b6de355ff495177",
+                        "name": "To Do"
+                    },
+                    {
+                        "id": "5cb592636b6de355ff495178",
+                        "name": "Doing"
+                    },
+                    {
+                        "id": "5cb592636b6de355ff495179",
+                        "name": "Done"
+                    },
+                    {
+                        "id": "5cb592d3d4185014d17f1bd6",
+                        "name": "Trello Testing List"
+                    }
+                ]
+            }
+
+
+### Update A Trello Contact [POST]
+This API lets you update your Trello Contacts
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+
+                "success":true,
+                "data":{
+                    "":[],
+                    "5cb592636b6de355ff495176":[
+                        {
+                            "id": "5cb592636b6de355ff495177",
+                            "name": "To Do"
+                        },
+                        {
+                            "id": "5cb592636b6de355ff495178",
+                            "name": "Doing"
+                        },
+                        {
+                            "id": "5cb592636b6de355ff495179",
+                            "name": "Done"
+                        },
+                        {
+                            "id": "5cb592d3d4185014d17f1bd6",
+                            "name": "Trello Testing List"
+                        }
+                    ]
+                }
+            }
+
+## Trello boards [/trello/boards]
+
+### Checking All Trello Boards [GET]
+Using this API endpoint you can check all your Trello boards at once
+
+Fetches Trello
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":{
+                    "":[],
+                    "5cb592636b6de355ff495176": [
+                        {
+                            "id": "5cb592636b6de355ff495176",
+                            "name": "Trello Testing Board"
+                        },
+                        {
+                            "id": "566e8512e0022e385391fa80",
+                            "name": "Welcome Board"
+                        }
+                    ]
+                }
+            }
+
+
+### Update A Trello Board [POST]
+This API enables you to update your board by adding a task, updating task status from Doing to Done and more.
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":{
+                    "":[],
+                    "5cb592636b6de355ff495176": [
+                        {
+                            "id": "5cb592636b6de355ff495176",
+                            "name": "Trello Testing Board"
+                        },
+                        {
+                            "id": "566e8512e0022e385391fa80",
+                            "name": "Welcome Board"
+                        }
+                    ]
+                }
+            }
+
+## Trello members [/trello/members/{?board}]
+
+### Checking Trello Members [GET]
+This API helps you to check your members list from the Trello boards
+
+Fetches Trello
+
++ Parameters
+    + board(string,required) -
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":{
+                    "5cb592636b6de355ff495176":[
+                        {
+                            "id": "566e8512e0022e385391fa7e",
+                            "name": "rokib"
+                        }
+                    ]
+                }
+            }
+
+
+### Update A Trello Members [POST]
+And using this API you will be able to edit and update info or role of your members
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":{
+                    "5cb592636b6de355ff495176":[
+                        {
+                            "id": "566e8512e0022e385391fa7e",
+                            "name": "rokib"
+                        }
+                    ]
+                }
+            }

@@ -1,0 +1,157 @@
+# Group Forms Fields
+
+
+## Forms Fields List [/forms/{form_id}/fields]
+
++ Parameters
+    + form_id (number, required) - id of Form
+
+### Forms Fields List [GET]
+
+weForms has a rich collection of form-fields. This API lets you check out all the built-in fields from a single place.
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                {
+                    "template": "file_upload",
+                    "name": "file_upload",
+                    "label": "File Upload",
+                    "required": "no",
+                    "width": "large",
+                    "css": "",
+                    "placeholder": "",
+                    "default": "",
+                    "size": 40,
+                    "help": "",
+                    "is_meta": "yes",
+                    "wpuf_cond": {
+                        "condition_status": "no",
+                        "cond_field": [
+                            ""
+                        ],
+                        "cond_operator": [
+                            "="
+                        ],
+                        "cond_option": [
+                            ""
+                        ],
+                        "cond_logic": "all"
+                    },
+                    "max_size": "10240000",
+                    "count": "1",
+                    "extension": [
+                        "images",
+                        "audio",
+                        "video",
+                        "pdf",
+                        "office",
+                        "zip",
+                        "exe",
+                        "csv"
+                    ],
+                    "id": 1115
+                },
+                {
+                    "template": "email_address",
+                    "name": "email_address",
+                    "label": "Email Address",
+                    "required": "no",
+                    "width": "large",
+                    "css": "",
+                    "placeholder": "",
+                    "default": "",
+                    "size": 40,
+                    "help": "",
+                    "is_meta": "yes",
+                    "wpuf_cond": {
+                        "condition_status": "no",
+                        "cond_field": [],
+                        "cond_operator": [
+                            "="
+                        ],
+                        "cond_option": [
+                            "- select -"
+                        ],
+                        "cond_logic": "all"
+                    },
+                    "duplicate": "",
+                    "id": 1330
+                }
+            }
+
+
+### Update A Form Field [PUT]
+With this API, you will be able to update your forms' fields by renaming it, adding or deleting new condition etc. 
+
++ name (string, optional) -
++ fields (object, required) -
+
++ Request (application/json)
+    + Body
+            
+            {
+                "name": "",
+                "fields": {
+
+                }
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "name" : " ",
+                "fields" : {
+                    "name": "Contact Form",
+                    "fields": [
+                        {
+                            "template":"email_address",
+                            "name":"email_address",
+                            "label":"Email Address",
+                            "required":"no",
+                            "id":5960855561,
+                            "width":"large",
+                            "css":"",
+                            "placeholder":"",
+                            "default":"",
+                            "size":40,
+                            "help":"",
+                            "is_meta":"yes",
+                            "is_new":true,
+                            "wpuf_cond":{
+                                "condition_status":"no",
+                                "cond_field":[],
+                                "cond_operator":["="],
+                                "cond_option":["- select -"],
+                                "cond_logic":"all"
+                                
+                            },
+                            
+                            "duplicate":""
+                        }
+                    ]
+                }
+            }
+
+
+
+
+
+
+
+## Forms Fields List [/forms/{form_id}/fields/{?field_id}]
+
+### Delete A Form Field [DELETE]
+This API enables you to delete any field you want from your pre-built or created Form-fields
+
++ Parameters
+    + field_id (array,required)
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "message": "Fields  deleted successfully "
+            }

@@ -1,0 +1,47 @@
+# Group Mailchimp
+
+
+## Mailchimp List [/mailchimp/]
+
+### Mailchimp Contact List[GET]
+This API lets you check you Mailchimp contact list with a single click
+
+Fetches Mailchimp List
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":[
+                    {
+                        "id":"1501ba70e4",
+                        "name":"Weforms"
+                    },
+                    {
+                        "id":"63d58f2fa0",
+                        "name":"weroks"
+                    }
+                ]
+            }
+
+
+### Update A Mailchimp  List [POST]
+And with this API, you can edit and update your Mailchimp contact list
+
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "success":true,
+                "data":[
+                    {
+                        "id":"1501ba70e4",
+                        "name":"Weforms"
+                    },
+                    {
+                        "id":"63d58f2fa0",
+                        "name":"weroks"
+                    }
+                ]
+            }
