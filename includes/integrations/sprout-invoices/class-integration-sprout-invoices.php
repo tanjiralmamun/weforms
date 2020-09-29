@@ -42,7 +42,7 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
     public function modify_response_data_redirect($response_data)
     {
         $si_redirect = weforms_get_entry_meta( $response_data['entry_id'], 'wpuf_si_redirect_url', true );
-        if ( '' !== $si_redirect ) {
+        if ('' !== $si_redirect) {
             $response_data['show_message'] = 0;
             $response_data['redirect_to'] = $si_redirect;
         }
@@ -100,7 +100,7 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
         $submission = array(
             'subject' => self::maybe_name( $integration->fields->subject, $entry_id ),
             //'line_items' => ! empty( $li ) ? $li : array() ,
-            'full_address' => ! empty( $full_address ) ? $full_address : array() ,
+            'full_address' => !empty( $full_address ) ? $full_address : array(),
             'client_name' => self::maybe_name( $integration->fields->client_name, $entry_id ),
             'email' => WeForms_Notification::replace_field_tags( $integration->fields->email, $entry_id ),
             'first_name' => self::maybe_name( $integration->fields->first_name, $entry_id ),
@@ -109,7 +109,8 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
             'duedate' => WeForms_Notification::replace_field_tags( $integration->fields->duedate, $entry_id ),
             'number' => WeForms_Notification::replace_field_tags( $integration->fields->number, $entry_id ),
             'vat' => WeForms_Notification::replace_field_tags( $integration->fields->vat, $entry_id ),
-            'edit_url' => admin_url( sprintf( 'admin.php?page=weforms#/form/%s/edit', $form_id ) ),
+            'entry_note' => self::get_fields_table( $form_id, $entry_id ),
+            'edit_url' => admin_url( sprintf( 'admin.php?page=weforms#/form/%s/entries/%s', $form_id, $entry_id ) ),
         );
 
         $doc_id = 0;
@@ -147,7 +148,7 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
             } elseif (get_post_type( $doc_id ) == SI_Estimate::POST_TYPE) {
                 $url = get_permalink( $doc_id );
             }
-            weforms_add_entry_meta( $entry_id,'wpuf_si_redirect_url', $url );
+            weforms_add_entry_meta( $entry_id, 'wpuf_si_redirect_url', $url );
         }
 
 
@@ -161,6 +162,54 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
     public function has_dependency()
     {
         return function_exists( 'sprout_invoices_load' );
+    }
+
+    private static function get_array($text, $entry_id)
+    {
+        $pattern = '/{field:(\w*)}/';
+
+        preg_match_all( $pattern, $text, $matches );
+
+        // bail out if nothing found to be replaced
+        if (!$matches) {
+            return $text;
+        }
+
+        // returning the first address, can't really deal with more.
+        foreach ($matches[1] as $index => $meta_key) {
+            return weforms_get_entry_meta( $entry_id, $meta_key, true );
+        }
+    }
+
+    public static function maybe_name($text, $entry_id)
+    {
+        $pattern = '/{name-(full|first|middle|last):(\w*)}/';
+
+        preg_match_all( $pattern, $text, $matches );
+
+        // bail out if nothing found to be replaced
+        if (!$matches[0]) {
+            return WeForms_Notification::replace_field_tags( $text, $entry_id );
+        }
+
+        list( $search, $fields, $meta_key ) = $matches;
+
+        $meta_value = weforms_get_entry_meta( $entry_id, $meta_key[0], true );
+        $replace = explode( WeForms::$field_separator, $meta_value );
+
+        foreach ($search as $index => $search_key) {
+            if ('first' == $fields[$index]) {
+                $text = str_replace( $search_key, $replace[0], $text );
+            } elseif ('middle' == $fields[$index]) {
+                $text = str_replace( $search_key, $replace[1], $text );
+            } elseif ('last' == $fields[$index]) {
+                $text = str_replace( $search_key, $replace[2], $text );
+            } else {
+                $text = str_replace( $search_key, implode( ' ', $replace ), $text );
+            }
+        }
+
+        return $text;
     }
 
     protected function create_invoice($submission = array(), $entry = array(), $form_id = 0)
@@ -184,9 +233,11 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
         $invoice->set_calculated_total();
 
         // notes
-        if (isset( $submission['notes'] ) && '' !== $submission['notes'] ) {
+        if (isset( $submission['notes'] ) && '' !== $submission['notes']) {
             SI_Internal_Records::new_record( $submission['notes'], SI_Controller::PRIVATE_NOTES_TYPE, $invoice_id, '', 0, false );
         }
+
+        SI_Internal_Records::new_record( $submission['entry_note'], SI_Controller::PRIVATE_NOTES_TYPE, $invoice_id, '', 0, false );
 
         if (isset( $submission['number'] )) {
             $invoice->set_invoice_id( $submission['number'] );
@@ -301,9 +352,10 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
         $estimate->set_line_items( $submission['line_items'] );
 
         // notes
-        if (isset( $submission['notes'] ) && '' !== $submission['notes'] ) {
+        if (isset( $submission['notes'] ) && '' !== $submission['notes']) {
             SI_Internal_Records::new_record( $submission['notes'], SI_Controller::PRIVATE_NOTES_TYPE, $estimate_id, '', 0, false );
         }
+        SI_Internal_Records::new_record( $submission['entry_note'], SI_Controller::PRIVATE_NOTES_TYPE, $estimate_id, '', 0, false );
 
         if (isset( $submission['number'] )) {
             $estimate->set_estimate_id( $submission['number'] );
@@ -329,49 +381,57 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
         return $estimate_id;
     }
 
-    private static function get_array( $text, $entry_id ) {
-        $pattern = '/{field:(\w*)}/';
+    public static function get_fields_table($form_id, $entry_id)
+    {
 
-        preg_match_all( $pattern, $text, $matches );
+        $form = weforms()->form->get( $form_id );
+        $entry = $form->entries()->get( $entry_id );
+        $fields = $entry->get_fields();
 
-        // bail out if nothing found to be replaced
-        if ( !$matches ) {
-            return $text;
+        if (!$fields) {
+            return '';
         }
 
-        // returning the first address, can't really deal with more.
-        foreach ( $matches[1] as $index => $meta_key ) {
-            return weforms_get_entry_meta( $entry_id, $meta_key, true );
-        }
-    }
+        $table = '<table width="600" cellpadding="0" cellspacing="0">';
+        $table .= '<tbody>';
 
-    public static function maybe_name( $text, $entry_id ) {
-        $pattern = '/{name-(full|first|middle|last):(\w*)}/';
+        foreach ($fields as $key => $value) {
+            $field_value = isset( $value['value'] ) ? $value['value'] : '';
 
-        preg_match_all( $pattern, $text, $matches );
-
-        // bail out if nothing found to be replaced
-        if ( !$matches[0] ) {
-            return WeForms_Notification::replace_field_tags( $text, $entry_id );
-        }
-
-        list( $search, $fields, $meta_key ) = $matches;
-
-        $meta_value = weforms_get_entry_meta( $entry_id, $meta_key[0], true );
-        $replace    = explode( WeForms::$field_separator, $meta_value );
-
-        foreach ( $search as $index => $search_key ) {
-            if ( 'first' == $fields[ $index ] ) {
-                $text = str_replace( $search_key, $replace[0], $text );
-            } elseif ( 'middle' == $fields[ $index ] ) {
-                $text = str_replace( $search_key, $replace[1], $text );
-            } elseif ( 'last' == $fields[ $index ] ) {
-                $text = str_replace( $search_key, $replace[2], $text );
-            } else {
-                $text = str_replace( $search_key, implode( ' ', $replace ), $text );
+            if (!$field_value) {
+                continue; // let's skip empty fields
             }
+
+            $table .= '<tr class="field-label">';
+            $table .= '<th><strong>' . $value['label'] . '</strong></th>';
+            $table .= '</tr>';
+            $table .= '<tr class="field-value">';
+            $table .= '<td>';
+
+            if (in_array( $value['type'], ['multiple_select', 'checkbox_field'] )) {
+                $field_value = is_array( $field_value ) ? $field_value : [];
+
+                if ($field_value) {
+                    $table .= '<ul>';
+
+                    foreach ($field_value as $value_key) {
+                        $table .= '<li>' . $value_key . '</li>';
+                    }
+                    $table .= '</ul>';
+                } else {
+                    $table .= '&mdash;';
+                }
+            } else {
+                $table .= $field_value;
+            }
+
+            $table .= '</td>';
+            $table .= '</tr>';
         }
 
-        return $text;
+        $table .= '</tbody>';
+        $table .= '</table>';
+
+        return $table;
     }
 }
