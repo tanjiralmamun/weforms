@@ -94,22 +94,45 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
             );
         }
 
-        /*$line_items = self::get_value( $integration->fields->line_items, $entry_id, $form_id, $page_id );
-        if (is_array($line_items)) {
-            foreach ($line_items as $rate => $value) {
-                $li[] = array(
-                    'desc' => $value,
-                    'rate' => $rate,
-                    'total' => $rate,
-                    'qty' => 1,
-                );
+        preg_match( '/{field:(\w*)}/', $integration->fields->line_items, $match );
+
+        // bail out if nothing found to be replaced
+        if (isset( $match[1] ) && isset( $_REQUEST[$match[1]] )) {
+
+            $fieldSlug = $match[1];
+            $lineItemsSelected = $_REQUEST[$match[1]];
+
+            // was anything even selected?
+            if (is_array( $lineItemsSelected )) {
+
+                $form_fields = weforms()->form->get( $form_id )->get_fields();
+                $lineItemOptions = false;
+                foreach ($form_fields as $key => $field) {
+                    if ($field['name'] === $fieldSlug) {
+                        $lineItemOptions = ( array( $field['options'] ) ) ? $field['options'] : false;
+                    }
+                }
+
+                // if the options are found
+                if ($lineItemOptions) {
+                    $li = array();
+                    foreach ($lineItemsSelected as $rate) {
+                        $li[] = array(
+                            'desc' => $lineItemOptions[$rate],
+                            'rate' => $rate,
+                            'total' => $rate,
+                            'qty' => 1,
+                        );
+                    }
+                }
             }
-        }*/
+
+        }
 
         //Setting up array to send user info to WordPress
         $submission = array(
             'subject' => self::get_value( $integration->fields->subject, $entry_id, $form_id, $page_id ),
-            //'line_items' => ! empty( $li ) ? $li : array() ,
+            'line_items' => !empty( $li ) ? $li : array(),
             'full_address' => !empty( $full_address ) ? $full_address : array(),
             'client_name' => self::get_value( $integration->fields->client_name, $entry_id, $form_id, $page_id ),
             'email' => self::get_value( $integration->fields->email, $entry_id, $form_id, $page_id ),
@@ -125,9 +148,6 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
             'page_id' => $page_id,
             'form_data' => $form_data['data'],
         );
-
-        error_log( "submission: " . print_r( $submission, TRUE ) );
-
 
         $doc_id = 0;
         $doctype = $integration->doctype;
@@ -186,13 +206,13 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
         }
 
         $notification = new WeForms_Notification( [
-            'form_id'  => $form_id,
-            'page_id'  => $page_id,
+            'form_id' => $form_id,
+            'page_id' => $page_id,
             'entry_id' => $entry_id,
         ] );
 
         // merge field
-        $value = $notification->get_merge_value( preg_replace('/[{}]/', '', $text) );
+        $value = $notification->get_merge_value( preg_replace( '/[{}]/', '', $text ) );
 
         return $value;
     }
@@ -299,7 +319,7 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
 
         $table .= '<div>';
         $edit_url = admin_url( sprintf( 'admin.php?page=weforms#/form/%s/entries/%s', $form_id, $entry_id ) );
-        $table .=  sprintf( __( 'Invoice Submitted: Form <a href="%s">#%s</a>.', 'sprout-invoices' ), $edit_url, $entry_id );
+        $table .= sprintf( __( 'Invoice Submitted: Form <a href="%s">#%s</a>.', 'sprout-invoices' ), $edit_url, $entry_id );
         $table .= '</div>';
 
         return $table;

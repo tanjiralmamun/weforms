@@ -726,11 +726,9 @@
                 </div>
             </div>
 
-            <!--
-            // Not supported until checkboxes (etc.) start storing as an array, or product select doesn't make the form a payment.
             <div class="wpuf-int-form-row">
                 <div class="wpuf-int-field-label">
-                    <label><?php /*_e( 'Line Items', 'default' ); */?></label>
+                    <label><?php  _e( 'Line Items', 'default' ); ?></label>
                 </div>
                 <div class="wpuf-int-field">
                     <div class="wpuf-int-field-small">
@@ -739,10 +737,10 @@
                                          field="line_items"></wpuf-merge-tags>
                     </div>
                 </div>
-            </div>-->
+            </div>
 
         </fieldset>
-
+        
         <div class="wpuf-int-form-row">
             <div class="wpuf-int-field">
                 <label for="create-client-and-user" class="weforms-switch">
