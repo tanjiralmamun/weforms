@@ -148,6 +148,7 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
             'page_id' => $page_id,
             'form_data' => $form_data['data'],
         );
+        $submission = apply_filters('wpf_si_submission_data_for_creation', $submission );
 
         $doc_id = 0;
         $doctype = $integration->doctype;
