@@ -342,6 +342,7 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
          */
         $invoice_id = SI_Invoice::create_invoice( $invoice_args );
         $invoice = SI_Invoice::get_instance( $invoice_id );
+
         $invoice->set_line_items( $submission['line_items'] );
         $invoice->set_calculated_total();
 
@@ -449,9 +450,12 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
          */
         $estimate_id = SI_Estimate::create_estimate( $estimate_args );
         $estimate = SI_Estimate::get_instance( $estimate_id );
-        do_action( 'si_estimate_submitted_from_adv_form', $estimate, $estimate_args );
 
         $estimate->set_line_items( $submission['line_items'] );
+        // @todo Sprout Invoices should include the unsetting of these after the line items are set, IIRC there's a filter that handles this. FYI: Invoices do not have this issue.
+        unset($estimate->subtotal);
+        unset($estimate->calculated_total);
+        $estimate->set_calculated_total();
 
         // notes
         if (isset( $submission['notes'] ) && '' !== $submission['notes']) {
@@ -471,6 +475,7 @@ class WeForms_Integration_SI extends WeForms_Abstract_Integration
 
         SI_Internal_Records::new_record( $submission['entry_note'], 'estimate_submission', $estimate_id, sprintf( __( 'Estimate Submitted: Form %s.', 'sprout-invoices' ), $submission['entry_id'] ), '', false );
 
+        do_action( 'si_estimate_submitted_from_adv_form', $estimate, $estimate_args );
 
         return $estimate_id;
     }
